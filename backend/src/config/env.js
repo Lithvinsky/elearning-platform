@@ -20,7 +20,10 @@ export const env = {
   clientOrigin:
     process.env.CLIENT_ORIGIN ||
     "http://localhost:5173,https://elearning-platform-orpin-zeta.vercel.app",
-  refreshCookieSameSite: process.env.REFRESH_COOKIE_SAMESITE || "lax",
+  /** Cross-site SPA (e.g. Vercel → Render) requires `none` + Secure or refresh cookies are not sent on fetch. */
+  refreshCookieSameSite:
+    process.env.REFRESH_COOKIE_SAMESITE ||
+    (process.env.NODE_ENV === "production" ? "none" : "lax"),
 };
 
 export function assertEnv() {
