@@ -36,10 +36,9 @@ cd frontend && npm install && npm run dev
 ## Layout
 
 ```
-elearning/
 ├── backend/
 ├── frontend/
 └── README.md
 ```
 
-See inline API routes in `backend/routes/` and UI under `frontend/src/`.
+See API entry `backend/src/server.js`, routes under `backend/src/routes/`, and UI under `frontend/src/`.
