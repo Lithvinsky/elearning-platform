@@ -17,7 +17,9 @@ export const env = {
   jwtRefreshSecret: trimEnv(process.env.JWT_REFRESH_SECRET),
   accessTokenExpires: process.env.ACCESS_TOKEN_EXPIRES || "15m",
   refreshTokenExpires: process.env.REFRESH_TOKEN_EXPIRES || "7d",
-  clientOrigin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  clientOrigin:
+    process.env.CLIENT_ORIGIN ||
+    "http://localhost:5173,https://elearning-platform-orpin-zeta.vercel.app",
   refreshCookieSameSite: process.env.REFRESH_COOKIE_SAMESITE || "lax",
 };
 
