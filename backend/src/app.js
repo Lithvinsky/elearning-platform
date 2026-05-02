@@ -19,7 +19,17 @@ const uploadsPath = path.join(__dirname, "..", "uploads");
 export function createApp() {
   const app = express();
 
-  app.use(cors(corsOptions));
+  app.use(
+    cors({
+      origin: [
+        "https://elearning-platform-3jb1j9t92-lithvinskys-projects.vercel.app",
+        "http://localhost:5173",
+      ],
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true,
+    }),
+  );
   app.use(express.json({ limit: "3mb" }));
   app.use(cookieParser());
 
