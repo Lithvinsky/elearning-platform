@@ -15,7 +15,9 @@ import { ProfilePage } from "./pages/ProfilePage";
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <ThemeBodySync />
+      <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
