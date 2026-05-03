@@ -38,9 +38,13 @@ export function LoginPage() {
         <AppLogo showText />
         <h1 className="auth-title">Sign in</h1>
         <p className="auth-subtitle">Access your courses, requests, and group discussions.</p>
-        <form onSubmit={onSubmit} className="auth-form">
+        <form onSubmit={onSubmit} className="auth-form" autoComplete="on">
           <Input
             type="email"
+            name="email"
+            autoComplete="email"
+            inputMode="email"
+            enterKeyHint="next"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
@@ -48,6 +52,9 @@ export function LoginPage() {
           />
           <Input
             type="password"
+            name="password"
+            autoComplete="current-password"
+            enterKeyHint="go"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
