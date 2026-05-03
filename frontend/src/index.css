@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: light;
+}
+
 :root {
   --violet: #8b5cf6;
   --violet-dark: #7c3aed;
@@ -55,6 +59,7 @@ button:focus-visible,
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .app-shell {
@@ -112,6 +117,192 @@ button:focus-visible,
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.topbar__menu-btn {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--slate);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.topbar__menu-btn:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+  background: var(--violet-soft);
+}
+
+.topbar__menu-icon {
+  display: block;
+  width: 1.125rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+}
+
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(15, 23, 42, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.mobile-nav-backdrop--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.theme-dark .mobile-nav-backdrop {
+  background: rgba(2, 6, 23, 0.72);
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  width: min(88vw, 300px);
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-right: 1px solid var(--gray);
+  box-shadow: 6px 0 28px rgba(15, 23, 42, 0.12);
+  transform: translateX(-100%);
+  pointer-events: none;
+  visibility: hidden;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.mobile-nav-drawer--open {
+  transform: translateX(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+body.theme-dark .mobile-nav-drawer {
+  box-shadow: 6px 0 36px rgba(0, 0, 0, 0.45);
+}
+
+.mobile-nav-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: max(0.9rem, env(safe-area-inset-top)) 1rem 0.85rem;
+  border-bottom: 1px solid var(--gray);
+  flex-shrink: 0;
+}
+
+.mobile-nav-drawer__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--slate);
+}
+
+.mobile-nav-drawer__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -0.25rem -0.35rem -0.25rem 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.65rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.mobile-nav-drawer__close:hover {
+  color: var(--slate);
+  background: var(--violet-soft);
+}
+
+.mobile-nav-drawer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0.85rem;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-drawer__links .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 0.9rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mobile-nav-drawer__links .nav-link.nav-active {
+  color: #fff;
+}
+
+.mobile-nav-drawer__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem 0.85rem max(1rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--gray);
+  flex-shrink: 0;
+}
+
+.mobile-nav-drawer__footer .btn {
+  width: 100%;
+  justify-content: center;
+  min-height: 2.75rem;
+}
+
+.mobile-nav-drawer__profile {
+  justify-content: center;
+  padding: 0.55rem 0.85rem;
+}
+
+@media (max-width: 767px) {
+  .top-links--desktop,
+  .top-user--desktop {
+    display: none !important;
+  }
+
+  .topbar__menu-btn {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .topbar {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.75rem;
+  }
+
+  .topbar--sticky {
+    z-index: 80;
+  }
 }
 
 .user-pill {
