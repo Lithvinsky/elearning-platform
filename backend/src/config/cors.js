@@ -8,8 +8,7 @@ const fromEnv = env.clientOrigin
 const allowedOrigins = [...new Set(fromEnv)];
 
 /** Vercel production + preview URLs for this project (hostname prefix after HTTPS). */
-const vercelLearnEase =
-  /^https:\/\/elearning-platform[\w-]*\.vercel\.app$/i;
+const vercelLearnEase = /^https:\/\/elearning-platform[\w-]*\.vercel\.app$/i;
 
 function isAllowedOrigin(origin) {
   if (!origin) return true;
@@ -26,9 +25,10 @@ function isAllowedOrigin(origin) {
 export const corsOptions = {
   origin(origin, callback) {
     if (!origin) return callback(null, true);
-    return callback(null, isAllowedOrigin(origin));
+    if (isAllowedOrigin(origin)) return callback(null, true);
+    return callback(null, false);
   },
   credentials: true,
-  maxAge: 86_400,
+  maxAge: 86400,
   optionsSuccessStatus: 204,
 };
